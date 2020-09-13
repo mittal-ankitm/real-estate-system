@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 const {ObjectId}=mongoose.Schema.Types
-const userSchema=new mongoose.Schema({
+const userdataSchema=new mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -13,14 +13,15 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    password:{
+    mobile:{
         type:String,
         required:true
     },
-    txnpassword:{
+    photo:{
         type:String,
         required:true
-    }
+    },
+    property:[{type:ObjectId,ref:"property"}]
 })
 
-module.exports=mongoose.model("user",userSchema);
+module.exports=mongoose.model("userdata",userdataSchema);

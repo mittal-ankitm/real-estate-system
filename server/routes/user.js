@@ -3,17 +3,55 @@ const router=express.Router()
 const mongoose=require("mongoose")
 const post=require('../models/post')
 const requirelogin=require("../middlewares/requirelogin")
-const user=require('../models/user');
-const useruid = require("../models/useruid");
-const property = require("../models/property");
+const user=require('../models/user')
+const userdata=require("../models/userdata")
 
-router.get('/getuserdetails',requirelogin,(req,res)=>{
-useruid.findOne({uid:req.user.uid})
-.populate("propertylist")
-.then(userdetails=>{
-    req.json(userdetails)
+
+router.get('/user/userdetails',requirelogin,(req,res)=>{
+    userdata.findOne({uid:req.user.uid})
+    .populate("property")
+    .then(userdetails=>{
+        res.json({userdetails:userdetails})
+    })
 })
+
+
+router.get('/user/userinfo/:userid',requirelogin,(req,res)=>{
+    userdata.findOne({uid:req.params.userid})
+    .populate("property")
+    .then(userdetails=>{
+        res.json({userdetails:userdetails})
+    })
 })
+
+router.post('/user/search',requirelogin,(req,res)=>{
+    const query=req.body.query
+    const p=new RegExp(query,"i")
+    userdata.find({$or:[{email:{$regex:p}},{uid:{$regex:p}},{name:{$regex:p}}]})
+    .then(userdetails=>{
+        res.json({userdetails:userdetails})
+    })
+})
+
+
+router.post('/search',requirelogin,(req,res)=>{
+    let userpattern=new RegExp("^"+req.body.query)
+    user.find({email:{$regex:userpattern}})
+    .then(user=>{
+        res.json({user})
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+const searchproduct=(query)=>{
+    let userpattern=new RegExp(query,"i")
+    let dd=data.filter(val=>{
+        return userpattern.test(val.name)
+    })
+    setlist(dd);
+    console.log(list)
+   }
 
 router.get('/user/:id',requirelogin,(req,res)=>{
     user.findOne({_id:req.params.id})
@@ -90,14 +128,6 @@ router.put('/updatepic',requirelogin,(req,res)=>{
     })
 })
 
-router.post('/search',requirelogin,(req,res)=>{
-    let userpattern=new RegExp("^"+req.body.query)
-    user.find({email:{$regex:userpattern}})
-    .then(user=>{
-        res.json({user})
-    }).catch(err=>{
-        console.log(err)
-    })
-})
+
 
 module.exports=router

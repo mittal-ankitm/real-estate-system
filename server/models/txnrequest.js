@@ -1,37 +1,42 @@
 const mongoose=require("mongoose")
 const {ObjectId}=mongoose.Schema.Types
-const propertySchema=new mongoose.Schema({
+const reqSchema=new mongoose.Schema({
+    from:{
+        type:String,
+        required:true
+    },
+    to:{
+        type:String,
+        required:true
+    },
     pid:{
         type:String,
         required:true
     },
-    address:{
+    agent:{
         type:String,
         required:true
     },
-    city:{
+    roomid:{
         type:String,
         required:true
     },
-    state:{
-        type:String,
-        required:true
+    buyerVerified:{
+        type:Boolean,
+        default:false
     },
-    pincode:{
-        type:String,
-        required:true
+    sellerVerified:{
+        type:Boolean,
+        default:false
     },
-    owner:{
-        type:ObjectId,
-        ref:"userdata"
+    agentVerified:{
+        type:Boolean,
+        default:false
     },
-    images:[{
-        url:String
-    }],
-    forsale:{
+    confirm:{
         type:Boolean,
         default:false
     }
 })
 
-module.exports=mongoose.model("property",propertySchema);
+module.exports=mongoose.model("txnrequest",reqSchema);

@@ -1,37 +1,30 @@
 const mongoose=require("mongoose")
 const {ObjectId}=mongoose.Schema.Types
-const propertySchema=new mongoose.Schema({
-    pid:{
+const agentSchema=new mongoose.Schema({
+    name:{
         type:String,
         required:true
     },
-    address:{
+    email:{
         type:String,
         required:true
     },
-    city:{
+    uid:{
         type:String,
         required:true
     },
-    state:{
+    password:{
         type:String,
         required:true
     },
-    pincode:{
+    txnpassword:{
         type:String,
         required:true
     },
-    owner:{
-        type:ObjectId,
-        ref:"userdata"
-    },
-    images:[{
-        url:String
-    }],
-    forsale:{
+    aval:{
         type:Boolean,
-        default:false
+        default:true
     }
 })
 
-module.exports=mongoose.model("property",propertySchema);
+module.exports=mongoose.model("agent",agentSchema);

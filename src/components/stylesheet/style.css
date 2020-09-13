@@ -1,0 +1,73 @@
+.main{
+    vertical-align:middle;
+
+}
+img{
+    vertical-align:middle;
+}
+.nav{
+    text-align:center;
+    padding:10px;
+    margin:40px;
+    vertical-align:center;
+    margin-bottom: 40px;
+}
+.msg{
+    font-size:20px;
+    font-variant-caps: small-caps;
+}
+
+a,a:visited{
+    color:black;
+}
+
+ul,li{
+    font-size:20px;
+    font-variant: small-caps;
+    display:inline;
+    align:center;
+    margin:40px;
+}
+
+input{
+    font-size:20px;
+    padding:10px;
+    margin:15px;
+    border-radius:10px;
+    font-variant:small-caps;
+    text-align: center;
+}
+
+button{
+    font-size:15px;
+    padding:5px;
+    margin:10px;
+    border-radius:5px;
+    font-variant:small-caps;
+    text-align: center;
+}
+div{
+    text-align: center;
+}
+body{
+    background:#3594c1;
+    color:black;
+}
+
+.propinfo{
+    color:black;
+    display:inline-block;
+    font-size:15px;
+    margin:20px;
+    padding:10px;
+    border:1px black solid;
+    border-radius:10px;
+}
+.info{
+    display:inline-block;
+    font-size:15px;
+    margin:20px;
+    padding:10px;
+    border:1px rgb(3, 16, 41) solid;
+    border-radius:10px;
+}

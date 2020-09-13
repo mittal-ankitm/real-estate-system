@@ -2,7 +2,7 @@ const jwt=require("jsonwebtoken")
 const {jwt_secret}=require("../keys")
 
 const mongoose=require("mongoose")
-const user=require("../models/user")
+const user=require("../models/admin")
 
 module.exports=(req,res,next)=>{
     const {authorization}=req.headers
